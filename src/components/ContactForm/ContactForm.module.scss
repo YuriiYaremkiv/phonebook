@@ -1,0 +1,39 @@
+form {
+  padding: 16px 20px;
+
+  border: 1px solid #000;
+  border-radius: 12px;
+  background-color: #e7e7e7;
+}
+
+.formSubmit__label {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.formSubmit__input {
+  margin-top: 4px;
+}
+
+.formSubmit__button {
+  padding: 4px 16px;
+  margin-bottom: 16px;
+
+
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+
+  transition: background-color 250ms linear, color 250ms linear;
+
+  &:hover {
+    color: #fff;
+
+    background-color: #6495ed;
+    transition: background-color 250ms linear, color 250ms linear;
+  }
+}
+
+input {
+  display: block;
+}
