@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { LayoutPage } from '../pages/LayoutPage/LayoutPage';
 import { RegisterPage } from 'pages/RegisterPage/RegisterPage';
@@ -10,6 +10,7 @@ import { ContactsPage } from '../pages/ContactPage/ContactsPage';
 
 import { authOperations } from 'redux/auth';
 import { PrivateRoute } from './PrivateRoute';
+import { PublicRoute } from './PublicRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -19,14 +20,12 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LayoutPage />}>
-          <Route path="register" element={<RegisterPage />} />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
-        </Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<LayoutPage />}>
+        <Route path="register" element={<RegisterPage />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="contacts" element={<ContactsPage />} />
+      </Route>
+    </Routes>
   );
 };

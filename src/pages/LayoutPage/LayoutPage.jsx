@@ -12,7 +12,7 @@ export const LayoutPage = () => {
 
   return (
     <>
-      <header>
+      <header className={css.header}>
         <div className={css.container}>
           <div className={css.layout__container}>
             {isLoggedIn ? (

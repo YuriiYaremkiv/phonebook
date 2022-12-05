@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+import { NavLinkStyled } from './AppBar.styled';
 import css from './AppBar.module.scss';
 
 export const AppBar = () => {
@@ -7,10 +7,10 @@ export const AppBar = () => {
     <nav className={css.appBar}>
       <ul className={css.appBar__list}>
         <li>
-          <NavLink to="/register">Registration</NavLink>
+          <NavLinkStyled to="/register">Registration</NavLinkStyled>
         </li>
         <li>
-          <NavLink to="/login">Login</NavLink>
+          <NavLinkStyled to="/login">Login</NavLinkStyled>
         </li>
       </ul>
     </nav>

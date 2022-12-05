@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import Button from '@mui/material/Button';
 import css from './RegisterForm.module.scss';
 
 const initialValue = {
@@ -29,37 +29,41 @@ export const RegisterForm = ({ handleChange }) => {
       <label>
         Name:
         <input
-          className=""
+          className={css.registerForm__label}
           name="name"
           type="text"
           onChange={onHandleChange}
           value={user.name}
-          placeholder="Your name"
         ></input>
       </label>
       <label>
         Email:
         <input
-          className=""
+          className={css.registerForm__label}
           name="email"
           type="email"
           onChange={onHandleChange}
           value={user.email}
-          placeholder="Your email"
         ></input>
       </label>
       <label>
         Password
         <input
-          className=""
+          className={css.registerForm__label}
           type="password"
           name="password"
           onChange={onHandleChange}
           value={user.password}
-          placeholder="Your password"
         ></input>
       </label>
-      <button type="submit">Register</button>
+      <Button
+        className={css.registerForm__button}
+        variant="contained"
+        size="small"
+        type="submit"
+      >
+        Register
+      </Button>
     </form>
   );
 };

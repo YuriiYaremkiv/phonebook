@@ -1,12 +1,14 @@
+.header {
+  background-color: #e2e3e5;
+  border-bottom: 1px solid black;
+}
+
 .container {
-  max-width: 450px;
+  max-width: 550px;
 
   margin: 0 auto;
 }
 
 .layout__container {
   padding: 16px;
-  margin-bottom: 12px;
-
-  border-bottom: 1px solid red;
 }

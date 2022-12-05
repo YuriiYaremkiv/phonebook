@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
+import Button from '@mui/material/Button';
 import css from './UserMenu.module.scss';
 
 export const UserMenu = ({ userName, funcAPI }) => {
@@ -13,7 +14,9 @@ export const UserMenu = ({ userName, funcAPI }) => {
     <div className={css.userMenu}>
       <UserOutlined />
       <p className={css.userMenu__name}>Hi, {userName}!</p>
-      <button onClick={add}>Logout</button>
+      <Button variant="contained" size="small" onClick={add}>
+        Logout
+      </Button>
     </div>
   );
 };
