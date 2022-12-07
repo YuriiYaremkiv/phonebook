@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operationsAPI';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+  patchContact,
+} from './operationsAPI';
 
 export const phoneBookSliceReducer = createSlice({
   name: 'contacts',
@@ -43,6 +48,17 @@ export const phoneBookSliceReducer = createSlice({
       );
     },
     [deleteContact.rejected](state, actions) {
+      state.contacts.isLoading = false;
+      state.contacts.error = actions.payload;
+    },
+    [patchContact.pending](state) {
+      state.contacts.isLoading = true;
+    },
+    [patchContact.fulfilled](state, actions) {
+      state.contacts.isLoading = false;
+      console.log('edit user data: ', actions);
+    },
+    [patchContact.rejected](state, actions) {
       state.contacts.isLoading = false;
       state.contacts.error = actions.payload;
     },

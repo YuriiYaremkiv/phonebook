@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Button from '@mui/material/Button';
+import css from './LoginForm.module.scss';
 
 const initialValue = {
   email: '',
@@ -22,30 +24,35 @@ export const LoginForm = ({ loginUser }) => {
   };
 
   return (
-    <form onSubmit={hadleSumbmit}>
+    <form className={css.loginForm} onSubmit={hadleSumbmit}>
       <label>
         Email:
         <input
-          className=""
+          className={css.loginForm__input}
           name="email"
           type="email"
           onChange={onHandleChange}
           value={user.email}
-          placeholder="Your email"
         />
       </label>
       <label>
         Password:
         <input
-          className=""
+          className={css.loginForm__input}
           name="password"
           type="password"
           onChange={onHandleChange}
           value={user.password}
-          placeholder="Your password"
         />
       </label>
-      <button type="submit">Login</button>
+      <Button
+        className={css.loginForm__button}
+        variant="contained"
+        size="small"
+        type="submit"
+      >
+        Login
+      </Button>
     </form>
   );
 };

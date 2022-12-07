@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { LoginForm } from 'components/LoginForm/LoginForm';
 import { authOperations } from 'redux/auth';
+import css from './LoginPage.module.scss';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -10,5 +11,9 @@ export const LoginPage = () => {
     console.log(user);
   };
 
-  return <LoginForm loginUser={handleLoginUser} />;
+  return (
+    <div className={css.container}>
+      <LoginForm loginUser={handleLoginUser} />
+    </div>
+  );
 };

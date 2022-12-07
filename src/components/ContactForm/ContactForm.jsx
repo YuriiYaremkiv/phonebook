@@ -1,12 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/operationsAPI';
+import Button from '@mui/material/Button';
+import { getContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operationsAPI';
 import css from './ContactForm.module.scss';
 
 export const ContactForm = () => {
-  const [contact, setContact] = useState({ name: '', phone: '' });
+  const [contact, setContact] = useState({ name: '', number: '' });
   const dispatch = useDispatch();
   const contactsList = useSelector(getContacts);
 
@@ -24,13 +25,13 @@ export const ContactForm = () => {
     }
 
     dispatch(addContact(contact));
-    setContact({ name: '', phone: '' });
+    setContact({ name: '', number: '' });
   };
 
   return (
     <form className={css.formSubmit} onSubmit={handleSubmit}>
       <label className={css.formSubmit__label}>
-        Name
+        Name:
         <input
           className={css.formSubmit__input}
           type="text"
@@ -43,7 +44,7 @@ export const ContactForm = () => {
         />
       </label>
       <label className={css.formSubmit__label}>
-        Number
+        Number:
         <input
           className={css.formSubmit__input}
           type="tel"
@@ -51,13 +52,18 @@ export const ContactForm = () => {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={contact.phone}
-          onChange={e => setContact({ ...contact, phone: e.target.value })}
+          value={contact.number}
+          onChange={e => setContact({ ...contact, number: e.target.value })}
         />
       </label>
-      <button type="submit" className={css.formSubmit__button}>
+      <Button
+        className={css.formSubmit__button}
+        variant="contained"
+        size="small"
+        type="submit"
+      >
         Add contact
-      </button>
+      </Button>
     </form>
   );
 };

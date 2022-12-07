@@ -1,3 +1,7 @@
+.contactList {
+  margin-top: 16px;
+}
+
 .contactList__item {
   display: flex;
   justify-content: space-between;
@@ -7,9 +11,16 @@
   }
 }
 
-.contactList__button {
-  padding: 4px 16px;
+.contactList__buttonContainer {
+  display: flex;
+  gap: 12px;
+}
 
+.contactList__button {
+  display: block;
+  padding: 2px 12px;
+
+  margin-left: auto;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 4px;
