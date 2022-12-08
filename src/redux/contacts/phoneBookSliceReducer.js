@@ -3,7 +3,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-  patchContact,
+  updateContact,
 } from './operationsAPI';
 
 export const phoneBookSliceReducer = createSlice({
@@ -51,14 +51,17 @@ export const phoneBookSliceReducer = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = actions.payload;
     },
-    [patchContact.pending](state) {
+    [updateContact.pending](state) {
       state.contacts.isLoading = true;
     },
-    [patchContact.fulfilled](state, actions) {
+    [updateContact.fulfilled](state, actions) {
       state.contacts.isLoading = false;
-      console.log('edit user data: ', actions);
+      const index = state.contacts.items.findIndex(
+        contact => contact.id === actions.payload.id
+      );
+      state.contacts.items[index] = { ...actions.payload };
     },
-    [patchContact.rejected](state, actions) {
+    [updateContact.rejected](state, actions) {
       state.contacts.isLoading = false;
       state.contacts.error = actions.payload;
     },

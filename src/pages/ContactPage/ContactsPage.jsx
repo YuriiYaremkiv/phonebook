@@ -2,27 +2,26 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Progress } from 'components/Progress/Progress';
 import { Error } from 'components/Error/Error';
-import { Layout } from 'components/Layout1/Layout1';
+import { Layout } from 'components/Layout/Layout';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { PatchContact } from 'components/PatchContact/PatchContact';
 
 import { getContacts, getFilter } from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operationsAPI';
-import { deleteContact } from 'redux/contacts/operationsAPI';
+import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
 import css from './ContactsPage.module.scss';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const [edit, setEdit] = useState(false);
+  const inProgress = useSelector(state => state.contacts.contacts.isLoading);
+
+  const [blockLayout, setBlockLayout] = useState(false);
   const [editedContact, setEditedContact] = useState({});
 
   const filter = useSelector(getFilter);
-
-  console.log(contacts);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -36,9 +35,20 @@ export const ContactsPage = () => {
     setEditedContact(() => {
       return contacts.find(contact => contact.id === id);
     });
-    const add = contacts.find(contact => contact.id === id);
+    setBlockLayout(true);
+  };
 
-    console.log('dfdsvdv', add);
+  const hidePatchContact = () => {
+    if (!inProgress) {
+      setBlockLayout(false);
+    }
+  };
+
+  const onUpdateContact = updatedContact => {
+    dispatch(updateContact(updatedContact));
+    if (!inProgress) {
+      setBlockLayout(false);
+    }
   };
 
   const filteredContactsUser =
@@ -52,19 +62,24 @@ export const ContactsPage = () => {
 
   return (
     <div className={css.container}>
-      <h1 className={css.title}>Phonebook</h1>
-      <ContactForm />
-      <Progress />
-      <Error />
+      <Layout title="Add contact" blockLayoutValue={blockLayout}>
+        <ContactForm />
+        {false && <Error />}
+      </Layout>
 
-      {!edit ? (
+      {blockLayout ? (
         <>
-          <h2 className={css.title}>Edit contact</h2>
-          <PatchContact contact={editedContact} />
+          <Layout title="Edit contact">
+            <PatchContact
+              contact={editedContact}
+              hidePatchContact={hidePatchContact}
+              updateContactFunc={onUpdateContact}
+            />
+          </Layout>
         </>
       ) : null}
 
-      <Layout>
+      <Layout title="All contacts" blockLayoutValue={blockLayout}>
         <Filter />
 
         <ContactList

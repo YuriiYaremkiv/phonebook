@@ -13,7 +13,8 @@ export const LayoutPage = () => {
   return (
     <>
       <header className={css.header}>
-        <div className={css.container}>
+        <div className={css.header__container}>
+          <h1 className={css.header__title}>Phonebook</h1>
           <div className={css.layout__container}>
             {isLoggedIn ? (
               <UserMenu userName={userName} funcAPI={authOperations.logOut} />
@@ -24,7 +25,7 @@ export const LayoutPage = () => {
         </div>
       </header>
       <main>
-        <div className={css.container}>
+        <div className={css.main__container}>
           <Outlet />
         </div>
       </main>

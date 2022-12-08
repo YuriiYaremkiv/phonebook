@@ -1,0 +1,13 @@
+.layout__container {
+  position: relative;
+}
+
+.layout__title {
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+.layout__progress {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}

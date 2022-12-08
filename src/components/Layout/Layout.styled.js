@@ -5,6 +5,8 @@ export const Div = styled.div`
 
   padding: 16px 20px;
 
+  user-select: none;
+
   border: 1px solid #000;
   border-radius: 12px;
   background-color: #e7e7e7;

@@ -29,11 +29,11 @@ export const ContactForm = () => {
   };
 
   return (
-    <form className={css.formSubmit} onSubmit={handleSubmit}>
-      <label className={css.formSubmit__label}>
+    <form onSubmit={handleSubmit}>
+      <label className={css.form__label}>
         Name:
         <input
-          className={css.formSubmit__input}
+          className={css.form__input}
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -43,10 +43,10 @@ export const ContactForm = () => {
           onChange={e => setContact({ ...contact, name: e.target.value })}
         />
       </label>
-      <label className={css.formSubmit__label}>
+      <label className={css.form__label}>
         Number:
         <input
-          className={css.formSubmit__input}
+          className={css.form__input}
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -56,14 +56,11 @@ export const ContactForm = () => {
           onChange={e => setContact({ ...contact, number: e.target.value })}
         />
       </label>
-      <Button
-        className={css.formSubmit__button}
-        variant="contained"
-        size="small"
-        type="submit"
-      >
-        Add contact
-      </Button>
+      <div className={css.form__button}>
+        <Button variant="contained" size="small" type="submit">
+          Add contact
+        </Button>
+      </div>
     </form>
   );
 };

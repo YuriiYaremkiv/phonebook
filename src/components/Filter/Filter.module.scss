@@ -1,3 +1,13 @@
+.filter__label {
+  display: block;
+  padding-bottom: 16px;
+
+  border-bottom: 2px solid black;
+}
+
 .filter__input {
-  margin-top: 8px;
+  display: block;
+  margin-top: 4px;
+  padding: 4px;
+  width: 100%;
 }

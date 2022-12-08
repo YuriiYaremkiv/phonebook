@@ -6,8 +6,13 @@
   display: flex;
   justify-content: space-between;
 
+  padding: 8px;
+
+  border: 1px solid black;
+  border-radius: 8px;
+
   &:not(:last-child) {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 }
 

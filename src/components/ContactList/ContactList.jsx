@@ -11,9 +11,16 @@ export const ContactList = ({
       {contacts.map(({ id, name, number }) => {
         return (
           <li key={id} className={css.contactList__item}>
-            <p>
-              <b>{name}:</b> {number};
-            </p>
+            <div>
+              <p>
+                Name:<b> {name};</b>
+              </p>
+              <p>
+                Phone:
+                <b> {number};</b>
+              </p>
+            </div>
+
             <div className={css.contactList__buttonContainer}>
               <Button
                 className={css.contactList__button}
