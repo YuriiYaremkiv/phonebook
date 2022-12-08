@@ -1,10 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { filterContact } from 'redux/contacts/filterContactsReducer';
+import { getFilter } from 'redux/contacts/selectors';
 import css from './Filter.module.scss';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter.filter);
+  const filter = useSelector(getFilter);
 
   const addFilter = e => {
     const value = e.target.value.trim().toLocaleLowerCase();

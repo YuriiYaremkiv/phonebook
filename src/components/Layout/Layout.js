@@ -1,12 +1,12 @@
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { Progress } from '../Progress/Progress';
 import { Div } from './Layout.styled.js';
+import { getIsLoading } from 'redux/contacts/selectors';
 import css from './Layout.module.scss';
 
 export const Layout = ({ title, blockLayoutValue, children }) => {
-  const inProgress = useSelector(state => state.contacts.contacts.isLoading);
-  console.log(inProgress);
+  const inProgress = useSelector(getIsLoading);
   return (
     <div className={css.layout__container}>
       <h2 className={css.layout__title}>{title}</h2>
@@ -20,5 +20,6 @@ export const Layout = ({ title, blockLayoutValue, children }) => {
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  blockLayoutValue: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired,
 };

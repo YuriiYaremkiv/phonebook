@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import css from './RegisterForm.module.scss';
@@ -66,4 +67,8 @@ export const RegisterForm = ({ handleChange }) => {
       </Button>
     </form>
   );
+};
+
+RegisterForm.propTypes = {
+  handleChange: PropTypes.func.isRequired,
 };

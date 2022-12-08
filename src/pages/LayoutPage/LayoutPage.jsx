@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import { AppBar } from 'components/AppBar/AppBar';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { authOperations } from 'redux/auth';
+import authSelectors from 'redux/auth/auth-selectors';
 import css from './LayoutPage.module.scss';
 
 export const LayoutPage = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const userName = useSelector(state => state.auth.user.name);
+  const isLoggedIn = useSelector(authSelectors.getisLoggedIn);
+  const userName = useSelector(authSelectors.getUserName);
 
   return (
     <>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import Button from '@mui/material/Button';
@@ -101,4 +102,16 @@ export const PatchContact = ({
       </form>
     </div>
   );
+};
+
+PatchContact.propTypes = {
+  contact: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+  updateContactFunc: PropTypes.func.isRequired,
+  hidePatchContact: PropTypes.func.isRequired,
 };

@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Error } from 'components/Error/Error';
 import { Layout } from 'components/Layout/Layout';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { PatchContact } from 'components/PatchContact/PatchContact';
-
-import { getContacts, getFilter } from 'redux/contacts/selectors';
+import { getContacts, getFilter, getIsLoading } from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operationsAPI';
 import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
 import css from './ContactsPage.module.scss';
@@ -16,7 +14,7 @@ import css from './ContactsPage.module.scss';
 export const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const inProgress = useSelector(state => state.contacts.contacts.isLoading);
+  const inProgress = useSelector(getIsLoading);
 
   const [blockLayout, setBlockLayout] = useState(false);
   const [editedContact, setEditedContact] = useState({});

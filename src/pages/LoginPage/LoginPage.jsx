@@ -8,7 +8,6 @@ export const LoginPage = () => {
 
   const handleLoginUser = user => {
     dispatch(authOperations.login(user));
-    console.log(user);
   };
 
   return (

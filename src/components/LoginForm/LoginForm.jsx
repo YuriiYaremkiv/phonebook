@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import css from './LoginForm.module.scss';
@@ -55,4 +56,8 @@ export const LoginForm = ({ loginUser }) => {
       </Button>
     </form>
   );
+};
+
+LoginForm.propTypes = {
+  loginUser: PropTypes.func.isRequired,
 };

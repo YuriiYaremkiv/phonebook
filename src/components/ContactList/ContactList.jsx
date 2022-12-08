@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import css from './ContactList.module.scss';
 
@@ -46,4 +47,16 @@ export const ContactList = ({
       })}
     </ul>
   );
+};
+
+ContactList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+  editContactFunc: PropTypes.func.isRequired,
+  deleteContactFunc: PropTypes.func.isRequired,
 };

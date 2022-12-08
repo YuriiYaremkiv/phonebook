@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
 import Button from '@mui/material/Button';
@@ -19,4 +20,9 @@ export const UserMenu = ({ userName, funcAPI }) => {
       </Button>
     </div>
   );
+};
+
+UserMenu.propTypes = {
+  userName: PropTypes.string.isRequired,
+  funcAPI: PropTypes.func.isRequired,
 };
