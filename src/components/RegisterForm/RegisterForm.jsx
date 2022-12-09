@@ -33,6 +33,9 @@ export const RegisterForm = ({ handleChange }) => {
           className={css.registerForm__label}
           name="name"
           type="text"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          minLength="5"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           onChange={onHandleChange}
           value={user.name}
         ></input>
@@ -53,6 +56,7 @@ export const RegisterForm = ({ handleChange }) => {
           className={css.registerForm__label}
           type="password"
           name="password"
+          minLength="7"
           onChange={onHandleChange}
           value={user.password}
         ></input>

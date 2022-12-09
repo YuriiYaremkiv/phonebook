@@ -16,6 +16,7 @@ const authSlice = createSlice({
   extraReducers: {
     [authOperations.register.pending](state) {
       state.isLoading = true;
+      state.errorRegister = null;
     },
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
@@ -24,7 +25,9 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [authOperations.register.rejected](state, action) {
-      state.errorRegister = action.payload;
+      console.log('action', action.error.message);
+      state.errorRegister = action.error.message;
+      state.isLoggedIn = false;
       state.isLoading = false;
     },
     [authOperations.login.pending](state) {
@@ -47,7 +50,7 @@ const authSlice = createSlice({
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;
-      state.isLoggedIn = null;
+      state.isLoggedIn = false;
       state.isLoading = false;
     },
     [authOperations.logOut.rejected](state, action) {
@@ -59,12 +62,15 @@ const authSlice = createSlice({
       state.updateUser = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
+      console.log(action.payload);
       state.user = action.payload;
+      state.isLoading = false;
       state.isLoggedIn = true;
       state.updateUser = false;
     },
     [authOperations.fetchCurrentUser.rejected](state, action) {
-      state.errorRegister = action.payload;
+      state.token = null;
+      state.isLoading = false;
       state.isLoggedIn = false;
       state.updateUser = false;
     },
