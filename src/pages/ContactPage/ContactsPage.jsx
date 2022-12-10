@@ -6,7 +6,12 @@ import { Layout } from 'components/Layout/Layout';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
 import { PatchContact } from 'components/PatchContact/PatchContact';
-import { getContacts, getFilter, getIsLoading } from 'redux/contacts/selectors';
+import {
+  getContacts,
+  getFilter,
+  getIsLoading,
+  getError,
+} from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operationsAPI';
 import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
 import css from './ContactsPage.module.scss';
@@ -15,11 +20,10 @@ export const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const inProgress = useSelector(getIsLoading);
-
+  const filter = useSelector(getFilter);
+  const inError = useSelector(getError);
   const [blockLayout, setBlockLayout] = useState(false);
   const [editedContact, setEditedContact] = useState({});
-
-  const filter = useSelector(getFilter);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -60,9 +64,9 @@ export const ContactsPage = () => {
 
   return (
     <div className={css.container}>
+      {inError && <Error message={inError} />}
       <Layout title="Add contact" blockLayoutValue={blockLayout}>
         <ContactForm />
-        {false && <Error />}
       </Layout>
 
       {blockLayout ? (

@@ -28,7 +28,7 @@ const login = createAsyncThunk('auth/login', async user => {
     token.set(response.data.token);
     return response.data;
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 });
 
@@ -38,7 +38,7 @@ const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('/users/logout');
     token.unset('');
   } catch (e) {
-    return e.message;
+    throw new Error(e.message);
   }
 });
 
