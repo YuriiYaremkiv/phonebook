@@ -29,7 +29,6 @@ export const PatchContact = ({
 
   const onHandleChange = e => {
     const { name, value } = e.target;
-    console.log(name, value);
     setEditContact(prevState => {
       return {
         ...prevState,
