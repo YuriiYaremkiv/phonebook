@@ -5,7 +5,7 @@ import { Div } from './Layout.styled.js';
 import { getIsLoading } from 'redux/contacts/selectors';
 import css from './Layout.module.scss';
 
-export const Layout = ({ title, blockLayoutValue, children }) => {
+export const Layout = ({ title, blockLayoutValue = false, children }) => {
   const inProgress = useSelector(getIsLoading);
   return (
     <div className={css.layout__container}>
@@ -20,6 +20,6 @@ export const Layout = ({ title, blockLayoutValue, children }) => {
 
 Layout.propTypes = {
   title: PropTypes.string.isRequired,
-  blockLayoutValue: PropTypes.bool.isRequired,
+  blockLayoutValue: PropTypes.bool,
   children: PropTypes.node.isRequired,
 };

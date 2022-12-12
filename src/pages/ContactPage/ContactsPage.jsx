@@ -22,8 +22,8 @@ export const ContactsPage = () => {
   const inProgress = useSelector(getIsLoading);
   const filter = useSelector(getFilter);
   const inError = useSelector(getError);
-  const [blockLayout, setBlockLayout] = useState(false);
   const [editedContact, setEditedContact] = useState({});
+  const [blockLayout, setBlockLayout] = useState(false);
 
   useEffect(() => {
     dispatch(fetchContacts());

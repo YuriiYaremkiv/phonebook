@@ -50,6 +50,13 @@ export const App = () => {
                 />
               }
             />
+
+            <Route
+              path="*"
+              element={
+                <PublicRoute redirectTo="/contacts" component={<LoginPage />} />
+              }
+            />
           </>
         )}
       </Route>

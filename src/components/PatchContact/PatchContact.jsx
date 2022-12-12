@@ -29,7 +29,6 @@ export const PatchContact = ({
 
   const onHandleChange = e => {
     const { name, value } = e.target;
-    console.log(name, value);
     setEditContact(prevState => {
       return {
         ...prevState,
@@ -105,13 +104,11 @@ export const PatchContact = ({
 };
 
 PatchContact.propTypes = {
-  contact: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  contact: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    number: PropTypes.string.isRequired,
+  }).isRequired,
   updateContactFunc: PropTypes.func.isRequired,
   hidePatchContact: PropTypes.func.isRequired,
 };
