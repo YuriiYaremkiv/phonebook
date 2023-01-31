@@ -2,7 +2,7 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yyaremkiv.github.io/goit-react-hw-08-phonebook/",
+  "homepage": "https://yyaremkiv.github.io/phonebook/",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@emotion/react": "^11.10.5",
