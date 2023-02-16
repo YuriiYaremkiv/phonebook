@@ -7,8 +7,3 @@ export const PublicRoute = ({ component: Component, redirectTo = '/' }) => {
 
   return isLoggedIn ? <Navigate to={redirectTo} /> : Component;
 };
-
-PublicRoute.propTypes = {
-  component: PropTypes.object,
-  redirectTo: PropTypes.string,
-};
