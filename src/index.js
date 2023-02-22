@@ -4,9 +4,30 @@ import { App } from 'components/App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import HttpApi from 'i18next-http-backend';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '../src/redux/store';
+
+import i18nextHttpBackend from 'i18next-http-backend';
+
+import enTranslation from './locales/enTranslation.json';
+import ruTranslation from './locales/ruTranslation.json';
+
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: enTranslation },
+    ru: { translation: ruTranslation },
+  },
+  lng: 'en',
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

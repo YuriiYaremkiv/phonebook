@@ -10,6 +10,7 @@ export const Layout = ({ title, blockLayoutValue = false, children }) => {
   return (
     <div className={css.layout__container}>
       <h2 className={css.layout__title}>{title}</h2>
+      <h2>dfsdfhgdsjfhgsdjhgfv</h2>
       <div className={css.layout__progress}>{inProgress && <Progress />}</div>
       <div className={css.container__contacts}>
         <Div progress={inProgress || blockLayoutValue}>{children}</Div>

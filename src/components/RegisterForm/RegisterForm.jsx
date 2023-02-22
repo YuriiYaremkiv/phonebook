@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import css from './RegisterForm.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const initialValue = {
   name: '',
@@ -11,6 +12,7 @@ const initialValue = {
 
 export const RegisterForm = ({ handleChange }) => {
   const [user, setUser] = useState(initialValue);
+  const { t } = useTranslation();
 
   const onHandleChange = e => {
     setUser({
@@ -28,7 +30,7 @@ export const RegisterForm = ({ handleChange }) => {
   return (
     <form className={css.registerForm} onSubmit={handleSubmit}>
       <label>
-        Name:
+        {t('name')}
         <input
           className={css.registerForm__label}
           name="name"
@@ -41,7 +43,7 @@ export const RegisterForm = ({ handleChange }) => {
         ></input>
       </label>
       <label>
-        Email:
+        {t('email')}
         <input
           className={css.registerForm__label}
           name="email"
@@ -51,7 +53,7 @@ export const RegisterForm = ({ handleChange }) => {
         ></input>
       </label>
       <label>
-        Password
+        {t('password')}
         <input
           className={css.registerForm__label}
           type="password"
