@@ -10,12 +10,10 @@ import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { authOperations } from 'redux/auth';
 import authSelectors from 'redux/auth/auth-selectors';
-import { useTranslation } from 'react-i18next';
 
 export const App = () => {
   const dispatch = useDispatch();
   const updateUser = useSelector(authSelectors.getUpdateUser);
-  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
