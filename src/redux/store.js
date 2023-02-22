@@ -14,6 +14,7 @@ import { authReducer } from './auth';
 
 import { phoneBookSliceReducer } from './contacts/phoneBookSliceReducer';
 import { filterContactsReducer } from './contacts/filterContactsReducer';
+import { themeModeSlice } from './theme/themeModeSlice';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -29,11 +30,17 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const themeModePersistConfig = {
+  key: 'themeMode',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: phoneBookSliceReducer.reducer,
     filter: filterContactsReducer.reducer,
+    themeMode: persistReducer(themeModePersistConfig, themeModeSlice.reducer),
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

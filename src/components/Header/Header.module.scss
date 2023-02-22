@@ -1,10 +1,27 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 34px;
+}
+
+.title {
+  padding: 16px 0;
+
+  font-size: 32px;
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+  list-style: none;
 }
 
 .button {
   border-radius: 50%;
   color: red;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

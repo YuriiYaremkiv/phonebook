@@ -1,5 +1,7 @@
 {
   "title": "Phonebook",
+  "registration": "Registration",
+  "login": "Login",
   "name": "Name",
   "email": "Email",
   "password": "Password"
