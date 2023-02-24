@@ -5,6 +5,7 @@ const modeConfig = {
       backgroundColorMain: { backgroundColor: 'rgba(0, 0, 0, 0.04)' },
       backgroundColorSecondary: { backgroundColor: 'fafafa' },
       backgroundColorModal: { backgroundColor: 'rgba(0, 0, 0, 0.35)' },
+      backgroundColorInput: { backgroundColor: '#fff' },
       textColor: { color: '#000' },
     },
     dark: {
@@ -12,6 +13,7 @@ const modeConfig = {
       backgroundColorMain: { backgroundColor: '#000' },
       backgroundColorSecondary: { backgroundColor: '212121' },
       backgroundColorModal: { backgroundColor: 'rgba(0, 0, 0, 0.8)' },
+      backgroundColorInput: { backgroundColor: '#f5f5f5' },
       textColor: { color: '#fff' },
     },
 

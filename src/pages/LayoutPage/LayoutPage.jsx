@@ -19,16 +19,12 @@ export const LayoutPage = () => {
           <div className={css.layout__container}>
             {isLoggedIn ? (
               <UserMenu userName={userName} funcAPI={authOperations.logOut} />
-            ) : (
-              <AppBar />
-            )}
+            ) : null}
           </div>
         </div>
       </header>
       <main>
-        <div className={css.main__container}>
-          <Outlet />
-        </div>
+        <Outlet />
       </main>
     </>
   );

@@ -53,9 +53,9 @@ export const Header = () => {
                 className={css.button}
               >
                 {modeTheme === modeConfig.themeConfig.light ? (
-                  <LightModeOutlinedIcon />
-                ) : (
                   <DarkModeOutlinedIcon />
+                ) : (
+                  <LightModeOutlinedIcon />
                 )}
               </Button>
             </li>
