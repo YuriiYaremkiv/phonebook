@@ -4,5 +4,16 @@
   "login": "Login",
   "name": "Name",
   "email": "Email",
-  "password": "Password"
+  "password": "Password",
+  "confirmPassword": "Confirm password",
+  "required": "Required",
+  "signUp": "Sign up",
+  "signUpNotification": "Do you already have a profile? Let's login.",
+  "signIn": "Sign in",
+  "formikMin3": "Must be at least 3 characters",
+  "formikMin6": "Must be at least 6 characters",
+  "formikMax15": "Must be 15 characters or less",
+  "formikMax20": "Must be 20 characters or less",
+  "formikInvalidEmail": "Invalid email address",
+  "formikPasswordConfirm": "Passwords must match"
 }
