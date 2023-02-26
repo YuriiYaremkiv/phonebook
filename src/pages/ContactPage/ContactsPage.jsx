@@ -14,7 +14,6 @@ import {
 } from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operationsAPI';
 import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
-import css from './ContactsPage.module.scss';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -63,33 +62,35 @@ export const ContactsPage = () => {
   const contactsList = filter.length > 0 ? filteredContactsUser : contacts;
 
   return (
-    <div className={css.container}>
-      {inError && <Error message={inError} />}
-      <Layout title="Add contact" blockLayoutValue={blockLayout}>
-        <ContactForm />
-      </Layout>
+    <section>
+      <div className="container">
+        {inError && <Error message={inError} />}
+        <Layout title="Add contact" blockLayoutValue={blockLayout}>
+          <ContactForm />
+        </Layout>
 
-      {blockLayout ? (
-        <>
-          <Layout title="Edit contact">
-            <PatchContact
-              contact={editedContact}
-              hidePatchContact={hidePatchContact}
-              updateContactFunc={onUpdateContact}
-            />
-          </Layout>
-        </>
-      ) : null}
+        {blockLayout ? (
+          <>
+            <Layout title="Edit contact">
+              <PatchContact
+                contact={editedContact}
+                hidePatchContact={hidePatchContact}
+                updateContactFunc={onUpdateContact}
+              />
+            </Layout>
+          </>
+        ) : null}
 
-      <Layout title="All contacts" blockLayoutValue={blockLayout}>
-        <Filter />
+        <Layout title="All contacts" blockLayoutValue={blockLayout}>
+          <Filter />
 
-        <ContactList
-          contacts={contactsList}
-          editContactFunc={handleEditContact}
-          deleteContactFunc={handleDeleteContact}
-        />
-      </Layout>
-    </div>
+          <ContactList
+            contacts={contactsList}
+            editContactFunc={handleEditContact}
+            deleteContactFunc={handleDeleteContact}
+          />
+        </Layout>
+      </div>
+    </section>
   );
 };

@@ -1,0 +1,14 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  margin: 0 auto;
+  padding: 24px;
+  max-width: 450px;
+
+  border-radius: 8px;
+}
+
+.form__link {
+  margin: 14px 0 6px auto;
+}

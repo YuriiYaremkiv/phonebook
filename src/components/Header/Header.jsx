@@ -10,12 +10,19 @@ import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './Header.module.scss';
 
+import authSelectors from 'redux/auth/auth-selectors';
+import { UserMenu } from 'components/UserMenu/UserMenu';
+import { authOperations } from 'redux/auth';
+
 export const Header = () => {
   const { themeMode } = useSelector(state => state.themeMode);
   const dispatch = useDispatch();
   const [modeTheme, seModeTheme] = useState(themeMode);
   const styles = modeConfig.style[themeMode];
   const { t } = useTranslation();
+
+  const isLoggedIn = useSelector(authSelectors.getisLoggedIn);
+  const userName = useSelector(authSelectors.getUserName);
 
   const handleChangeTheme = () => {
     const theme =
@@ -60,6 +67,13 @@ export const Header = () => {
               </Button>
             </li>
           </ul>
+        </div>
+        <div className={css.header__container}>
+          <div className={css.layout__container}>
+            {isLoggedIn ? (
+              <UserMenu userName={userName} funcAPI={authOperations.logOut} />
+            ) : null}
+          </div>
         </div>
       </div>
     </header>

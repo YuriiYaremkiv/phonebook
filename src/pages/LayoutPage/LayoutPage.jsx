@@ -1,31 +1,21 @@
-import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { AppBar } from 'components/AppBar/AppBar';
-import { UserMenu } from 'components/UserMenu/UserMenu';
-import { authOperations } from 'redux/auth';
-import authSelectors from 'redux/auth/auth-selectors';
-import css from './LayoutPage.module.scss';
+import { Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
+import { Footer } from 'components/Footer/Footer';
+import modeConfig from 'configs/mode.config';
+import css from './LayoutPage.module.scss';
 
 export const LayoutPage = () => {
-  const isLoggedIn = useSelector(authSelectors.getisLoggedIn);
-  const userName = useSelector(authSelectors.getUserName);
+  const { themeMode } = useSelector(state => state.themeMode);
+  const styles = modeConfig.style[themeMode];
 
   return (
-    <>
+    <div className={css.container}>
       <Header />
-      <header className={css.header}>
-        <div className={css.header__container}>
-          <div className={css.layout__container}>
-            {isLoggedIn ? (
-              <UserMenu userName={userName} funcAPI={authOperations.logOut} />
-            ) : null}
-          </div>
-        </div>
-      </header>
-      <main>
+      <main styles={{ ...styles.backgroundColorMain }} className={css.main}>
         <Outlet />
       </main>
-    </>
+      <Footer />
+    </div>
   );
 };

@@ -19,19 +19,9 @@ export const SelectCountry = () => {
       style={{ ...styles.textColor }}
       className={css.button}
     >
-      <div className={css.select__item}>
-        <img
-          width="40"
-          src={`https://flagcdn.com/w320/${
-            i18n.language === 'ua' ? 'ua' : 'us'
-          }.jpg`}
-          alt={i18n.language}
-          className={css.image}
-        />
-        <p style={{ ...styles.textColor }} className={css.select__text}>
-          {i18n.language}
-        </p>
-      </div>
+      <p style={{ ...styles.textColor }} className={css.select__text}>
+        {i18n.language === 'en' ? 'ua' : 'en'}
+      </p>
     </Button>
   );
 };

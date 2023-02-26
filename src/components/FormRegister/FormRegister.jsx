@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { FormHelperText } from '@mui/material';
 import * as Yup from 'yup';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -14,10 +16,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormRegister.module.scss';
-import { FormHelperText } from '@mui/material';
-import { Link } from 'react-router-dom';
 
-export const FormRegister = () => {
+export const FormRegister = ({ handleUserRegister }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { themeMode } = useSelector(state => state.themeMode);
@@ -50,7 +50,11 @@ export const FormRegister = () => {
         .required(t('required')),
     }),
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      handleUserRegister({
+        name: values.name,
+        email: values.email,
+        password: values.password,
+      });
     },
   });
 
