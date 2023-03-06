@@ -12,7 +12,7 @@ export const LayoutPage = () => {
   return (
     <div className={css.container}>
       <Header />
-      <main styles={{ ...styles.backgroundColorMain }} className={css.main}>
+      <main style={{ ...styles.backgroundColorMain }} className={css.main}>
         <Outlet />
       </main>
       <Footer />

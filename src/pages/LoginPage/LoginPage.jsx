@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authOperations } from 'redux/auth';
 import authSelectors from 'redux/auth/auth-selectors';
 import { Progress } from 'components/Progress/Progress';
-import { Error } from 'components/Error/Error';
 import { FormLogin } from 'components/FormLogin/FormLogin';
+import css from './LoginPage.module.scss';
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
@@ -15,11 +15,10 @@ export const LoginPage = () => {
   };
 
   return (
-    <section>
+    <section className={css.section}>
       <div className="container">
-        <FormLogin handleLoginUser={handleLoginUser} />
+        <FormLogin handleLoginUser={handleLoginUser} error={errorLogin} />
         {isLoading && <Progress />}
-        {errorLogin && <Error message={errorLogin} />}
       </div>
     </section>
   );

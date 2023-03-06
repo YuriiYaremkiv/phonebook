@@ -1,15 +1,14 @@
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import translationEN from './en/translation.json';
-import translationUA from './ua/translation.json';
+import translation from './translations';
 
 i18n.use(LanguageDetector).init({
   resources: {
     en: {
-      translation: translationEN,
+      translation: translation.en,
     },
     ua: {
-      translation: translationUA,
+      translation: translation.ua,
     },
   },
   fallbackLng: 'en',

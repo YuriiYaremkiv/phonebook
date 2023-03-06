@@ -1,27 +1,12 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-}
-
-.title {
-  padding: 16px 0;
-
-  font-size: 32px;
-}
-
-.list {
-  display: flex;
-  gap: 12px;
-  list-style: none;
-}
-
-.button {
-  border-radius: 50%;
-  color: red;
-}
-
-.container {
+.wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.wrapper__menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }

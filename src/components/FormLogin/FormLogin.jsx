@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { FormHelperText } from '@mui/material';
+import { LogoUser } from 'components/LogoUser/LogoUser';
 import * as Yup from 'yup';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -17,7 +18,7 @@ import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormLogin.module.scss';
 
-export const FormLogin = ({ handleLoginUser }) => {
+export const FormLogin = ({ handleLoginUser, error = '' }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { themeMode } = useSelector(state => state.themeMode);
   const styles = modeConfig.style[themeMode];
@@ -54,6 +55,7 @@ export const FormLogin = ({ handleLoginUser }) => {
       style={{ ...styles.backgroundColorInput }}
       className={css.form}
     >
+      <LogoUser />
       {/* Email - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <TextField
@@ -83,7 +85,7 @@ export const FormLogin = ({ handleLoginUser }) => {
                 : 'hidden',
           }}
         >
-          {formik.errors.password}
+          {formik.errors.email}
         </FormHelperText>
       </FormControl>
       {/* Email - end */}
@@ -142,9 +144,10 @@ export const FormLogin = ({ handleLoginUser }) => {
       <Button type="submit" variant="contained">
         {t('signUp')}
       </Button>
-      <Link to="/login" className={css.form__link}>
+      <Link to="/" className={css.form__link}>
         {t('signUpNotification')}
       </Link>
+      {error ? <p className={css.error}>{error}</p> : null}
     </form>
   );
 };

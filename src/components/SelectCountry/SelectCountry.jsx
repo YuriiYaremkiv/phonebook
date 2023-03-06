@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './SelectCountry.module.scss';
-import Button from '@mui/material/Button';
 
 export const SelectCountry = () => {
   const { i18n } = useTranslation();

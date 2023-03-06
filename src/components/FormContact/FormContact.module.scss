@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: top;
+  justify-content: top;
+  gap: 10px;
+
+  margin: 0 auto;
+  padding: 24px;
+
+  background-color: var(--bgWhite);
+  border-radius: 8px;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  height: 40px;
+}
+
+.error {
+  color: var(--textRed);
+  text-align: right;
+}

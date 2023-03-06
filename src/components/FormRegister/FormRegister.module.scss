@@ -3,12 +3,28 @@
   flex-direction: column;
 
   margin: 0 auto;
-  padding: 24px;
+  padding: 4px 24px 24px 24px;
   max-width: 450px;
 
+  background-color: var(--bgWhite);
   border-radius: 8px;
 }
 
 .form__link {
   margin: 14px 0 6px auto;
+
+  color: var(--textBlack);
+  text-decoration: none;
+
+  transition: color var(--effectTimer) var(--effectFunction);
+
+  &:hover,
+  &:focus {
+    color: var(--textBlue);
+  }
+}
+
+.error {
+  color: var(--textRed);
+  text-align: right;
 }

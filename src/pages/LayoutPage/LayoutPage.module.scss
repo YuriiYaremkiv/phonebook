@@ -7,28 +7,3 @@
 .main {
   flex: 1;
 }
-
-.header {
-  background-color: #e2e3e5;
-  border-bottom: 1px solid black;
-}
-
-.header__container {
-  max-width: 450px;
-
-  margin: 0 auto;
-}
-
-.header__title {
-  margin-top: 16px;
-
-  text-align: center;
-}
-
-.layout__container {
-  padding: 16px;
-}
-.main__container {
-  max-width: 450px;
-  margin: 0 auto;
-}

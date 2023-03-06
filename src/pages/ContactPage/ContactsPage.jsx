@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Error } from 'components/Error/Error';
 import { Layout } from 'components/Layout/Layout';
 import { Filter } from 'components/Filter/Filter';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -14,6 +13,8 @@ import {
 } from 'redux/contacts/selectors';
 import { fetchContacts } from 'redux/contacts/operationsAPI';
 import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
+import { FormContact } from 'components/FormContact/FormContact';
+import { useTranslation } from 'react-i18next';
 
 export const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export const ContactsPage = () => {
   const inError = useSelector(getError);
   const [editedContact, setEditedContact] = useState({});
   const [blockLayout, setBlockLayout] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -64,9 +66,8 @@ export const ContactsPage = () => {
   return (
     <section>
       <div className="container">
-        {inError && <Error message={inError} />}
-        <Layout title="Add contact" blockLayoutValue={blockLayout}>
-          <ContactForm />
+        <Layout title={t('addContact')} blockLayoutValue={blockLayout}>
+          <FormContact />
         </Layout>
 
         {blockLayout ? (

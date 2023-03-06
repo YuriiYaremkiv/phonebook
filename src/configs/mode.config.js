@@ -2,20 +2,16 @@ const modeConfig = {
   style: {
     light: {
       backgroundColorHeader: { backgroundColor: '#fff' },
-      backgroundColorMain: { backgroundColor: 'rgba(0, 0, 0, 0.04)' },
-      backgroundColorSecondary: { backgroundColor: 'fafafa' },
+      backgroundColorMain: { backgroundColor: '#eeeeee' },
       backgroundColorFooter: { backgroundColor: '#fff' },
-      backgroundColorModal: { backgroundColor: 'rgba(0, 0, 0, 0.35)' },
-      backgroundColorInput: { backgroundColor: '#fff' },
+      colorIcon: { color: '#000' },
       textColor: { color: '#000' },
     },
     dark: {
       backgroundColorHeader: { backgroundColor: '#050505' },
-      backgroundColorMain: { backgroundColor: '#000' },
-      backgroundColorSecondary: { backgroundColor: '212121' },
+      backgroundColorMain: { backgroundColor: '#616161' },
       backgroundColorFooter: { backgroundColor: '#050505' },
-      backgroundColorModal: { backgroundColor: 'rgba(0, 0, 0, 0.8)' },
-      backgroundColorInput: { backgroundColor: '#f5f5f5' },
+      colorIcon: { color: '#1976d2' },
       textColor: { color: '#fff' },
     },
 
@@ -31,48 +27,6 @@ const modeConfig = {
       red: {
         color: 'red',
         transition: 'color 0.2s ease-in-out',
-      },
-    },
-    gradientBgImage: {
-      light: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(245,245,245,1), rgba(0,0,0,0))',
-      },
-      dark: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))',
-      },
-      red: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0))',
-      },
-    },
-    horizontalGradientBgImage: {
-      light: {
-        backgroundImage:
-          'linear-gradient(to right, rgba(245,245,245,0.8), rgba(0,0,0,0))',
-      },
-      dark: {
-        backgroundImage:
-          'linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0))',
-      },
-      red: {
-        backgroundImage:
-          'linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0))',
-      },
-    },
-    verticalGradientBgImage: {
-      light: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(245,245,245,0.9), rgba(0,0,0,0))',
-      },
-      dark: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
-      },
-      red: {
-        backgroundImage:
-          'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0))',
       },
     },
   },
