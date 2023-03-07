@@ -1,6 +1,7 @@
 const translation = {
   en: {
     addContact: 'Add Contact',
+    allcontacts: 'All contacts',
     title: 'Phonebook',
     registration: 'Registration',
     login: 'Login',
@@ -14,6 +15,7 @@ const translation = {
     signInNotification: "Do you already have a profile? Let's login.",
     signUpNotification: "Don't have an account? Sign Up.",
     signIn: 'Sign in',
+    findContactsForName: 'Find contacts by name:',
     formikMin3: 'Must be at least 3 characters',
     formikMin6: 'Must be at least 6 characters',
     formikMax15: 'Must be 15 characters or less',
@@ -26,6 +28,7 @@ const translation = {
   },
   ua: {
     addContact: 'Додати контакт',
+    allcontacts: 'Усі контакти',
     title: 'Телефонна книга',
     registration: 'Реєстрація',
     login: 'Увійти',
@@ -39,6 +42,7 @@ const translation = {
     signInNotification: 'У вас вже є профіль? Тоді авторизуйтесь.',
     signUpNotification: 'Не маєте облікового запису? Зареєструватися.',
     signIn: 'Увійти',
+    findContactsForName: "Знайти контакти за ім'ям:",
     formikMin3: 'Має бути не менше 3 символів',
     formikMin6: 'Має бути не менше 6 символів',
     formikMax15: 'Має бути 15 символів або менше',

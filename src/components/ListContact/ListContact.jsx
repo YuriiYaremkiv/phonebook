@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import Button from '@mui/material/Button';
-import css from './ContactList.module.scss';
+import css from './ListContact.module.scss';
 
-export const ContactList = ({
+export const ListContact = ({
   contacts,
   editContactFunc,
   deleteContactFunc,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <ul className={css.contactList}>
       {contacts.map(({ id, name, number }) => {
@@ -14,10 +16,11 @@ export const ContactList = ({
           <li key={id} className={css.contactList__item}>
             <div>
               <p>
-                Name:<b> {name};</b>
+                {`${t('name')}:`}
+                <b> {name};</b>
               </p>
               <p>
-                Phone:
+                {`${t('number')}:`}
                 <b> {number};</b>
               </p>
             </div>
@@ -47,16 +50,4 @@ export const ContactList = ({
       })}
     </ul>
   );
-};
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  editContactFunc: PropTypes.func.isRequired,
-  deleteContactFunc: PropTypes.func.isRequired,
 };

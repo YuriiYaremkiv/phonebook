@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Layout } from 'components/Layout/Layout';
 import { Filter } from 'components/Filter/Filter';
-import { ContactList } from 'components/ContactList/ContactList';
+import { ListContact } from 'components/ListContact/ListContact';
 import { PatchContact } from 'components/PatchContact/PatchContact';
 import {
   getContacts,
@@ -82,10 +81,10 @@ export const ContactsPage = () => {
           </>
         ) : null}
 
-        <Layout title="All contacts" blockLayoutValue={blockLayout}>
+        <Layout title={t('allcontacts')} blockLayoutValue={blockLayout}>
           <Filter />
 
-          <ContactList
+          <ListContact
             contacts={contactsList}
             editContactFunc={handleEditContact}
             deleteContactFunc={handleDeleteContact}
