@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
+import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
 import css from './ListContact.module.scss';
-
 export const ListContact = ({
   contacts,
   editContactFunc,
@@ -10,39 +10,38 @@ export const ListContact = ({
   const { t } = useTranslation();
 
   return (
-    <ul className={css.contactList}>
+    <ul className={css.list}>
       {contacts.map(({ id, name, number }) => {
         return (
-          <li key={id} className={css.contactList__item}>
-            <div>
+          <li key={id} className={css.list__item}>
+            <div className={css.list__container}>
+              <PersonIcon />
               <p>
                 {`${t('name')}:`}
-                <b> {name};</b>
+                <b> {name}</b>
               </p>
               <p>
                 {`${t('number')}:`}
-                <b> {number};</b>
+                <b> {number}</b>
               </p>
             </div>
 
-            <div className={css.contactList__buttonContainer}>
+            <div className={css.list__containerButton}>
               <Button
-                className={css.contactList__button}
                 variant="contained"
                 size="small"
                 type="button"
                 onClick={() => editContactFunc(id)}
               >
-                Edit
+                {t('edit')}
               </Button>
               <Button
-                className={css.contactList__button}
                 type="button"
                 variant="contained"
                 size="small"
                 onClick={() => deleteContactFunc(id)}
               >
-                Delete
+                {t('delete')}
               </Button>
             </div>
           </li>

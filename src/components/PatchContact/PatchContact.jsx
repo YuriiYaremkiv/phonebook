@@ -1,7 +1,13 @@
-import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
+import * as Yup from 'yup';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { FormHelperText } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import modeConfig from 'configs/mode.config';
 import css from './PatchContact.module.scss';
 
 export const PatchContact = ({
@@ -9,106 +15,128 @@ export const PatchContact = ({
   updateContactFunc,
   hidePatchContact,
 }) => {
-  const [editContact, setEditContact] = useState({
-    id: '',
-    name: '',
-    number: '',
-  });
+  const { themeMode } = useSelector(state => state.themeMode);
+  const styles = modeConfig.style[themeMode];
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    if (!contact.name) {
-      return;
-    }
-
-    setEditContact({
+  const formik = useFormik({
+    initialValues: {
       id: contact.id,
       name: contact.name,
       number: contact.number,
-    });
-  }, [contact]);
-
-  const onHandleChange = e => {
-    const { name, value } = e.target;
-    setEditContact(prevState => {
-      return {
-        ...prevState,
-        [name]: value,
-      };
-    });
-  };
-
-  const onHandleSubmit = e => {
-    e.preventDefault();
-
-    if (
-      editContact.name === contact.name &&
-      editContact.number === contact.number
-    ) {
-      Notify.info('Make changes to the contact or close this window!');
-      return;
-    }
-    updateContactFunc(editContact);
-  };
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(6, t('formikMin6'))
+        .max(20, t('formikMax20'))
+        .required(t('required')),
+      number: Yup.string()
+        .min(6, t('formikMin6'))
+        .max(20, t('formikMax20'))
+        .matches(/^[0-9()+-]*$/, t('formikPhoneFormat'))
+        .required(t('required')),
+    }),
+    onSubmit: values => {
+      if (values.name === contact.name && values.number === contact.number) {
+        Notify.info(t('errorMessage1'));
+        return;
+      }
+      updateContactFunc({
+        id: values.id,
+        name: values.name,
+        number: values.number,
+      });
+    },
+  });
 
   return (
-    <div className={css.patchContact__container}>
-      <form onSubmit={e => onHandleSubmit(e)}>
-        <label className={css.patchContact__label}>
-          Name:
-          <input
-            className={css.patchContact__input}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-            onChange={e => onHandleChange(e)}
-            value={editContact.name}
-          />
-        </label>
-        <label className={css.patchContact__label}>
-          Number:
-          <input
-            className={css.patchContact__input}
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            onChange={e => onHandleChange(e)}
-            type="text"
-            value={editContact.number}
-          />
-        </label>
-        <div className={css.patchContact__button}>
-          <Button
-            variant="contained"
-            size="small"
-            type="submit"
-            color="success"
-          >
-            Accept
-          </Button>
-          <Button
-            onClick={hidePatchContact}
-            variant="contained"
-            size="small"
-            type="button"
-            color="error"
-          >
-            Close
-          </Button>
-        </div>
-      </form>
-    </div>
-  );
-};
+    <form
+      onSubmit={formik.handleSubmit}
+      style={{ ...styles.backgroundColorInput }}
+      className={css.form}
+    >
+      {/* Name - start */}
+      <FormControl variant="outlined">
+        <TextField
+          label={t('name')}
+          variant="outlined"
+          id="name"
+          name="name"
+          type="text"
+          size="small"
+          error={Boolean(formik.touched.name && formik.errors.name)}
+          className={css.input}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.name}
+        />
+        <FormHelperText
+          error={Boolean(formik.touched.name && formik.errors.name)}
+          style={{
+            height: '14px',
+            marginTop: 0,
+            marginBottom: '10px',
+            padding: 0,
+            fontSize: '12px',
+            visibility:
+              formik.touched.name && formik.errors.name ? 'visible' : 'hidden',
+          }}
+        >
+          {formik.errors.name}
+        </FormHelperText>
+      </FormControl>
+      {/* Name - end */}
 
-PatchContact.propTypes = {
-  contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }).isRequired,
-  updateContactFunc: PropTypes.func.isRequired,
-  hidePatchContact: PropTypes.func.isRequired,
+      {/* Number - start */}
+      <FormControl variant="outlined">
+        <TextField
+          label={t('number')}
+          variant="outlined"
+          id="number"
+          name="number"
+          type="text"
+          size="small"
+          error={Boolean(formik.touched.number && formik.errors.number)}
+          className={css.input}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.number}
+        />
+        <FormHelperText
+          error={Boolean(formik.touched.number && formik.errors.number)}
+          style={{
+            height: '14px',
+            marginTop: 0,
+            marginBottom: '10px',
+            padding: 0,
+            fontSize: '12px',
+            visibility:
+              formik.touched.number && formik.errors.number
+                ? 'visible'
+                : 'hidden',
+          }}
+        >
+          {formik.errors.number}
+        </FormHelperText>
+      </FormControl>
+      {/* Number - end */}
+
+      <Button
+        type="submit"
+        variant="contained"
+        style={{ backgroundColor: 'green' }}
+        className={css.button}
+      >
+        {t('accept')}
+      </Button>
+      <Button
+        onClick={hidePatchContact}
+        variant="contained"
+        style={{ backgroundColor: 'red' }}
+        className={css.button}
+      >
+        {t('close')}
+      </Button>
+    </form>
+  );
 };

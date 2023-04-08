@@ -1,27 +1,12 @@
-.patchContact__container {
-  padding: 16px;
-
-  border-radius: 12px;
-}
-
-.patchContact__label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.patchContact__input {
-  display: block;
-  width: 100%;
-
-  padding: 4px;
-
-  margin-top: 4px;
-}
-
-.patchContact__button {
+.form {
   display: flex;
   justify-content: center;
   gap: 16px;
+  padding: 16px 8px 16px 8px;
 
-  margin-top: 16px;
+  background-color: var(--bgWhite);
+}
+
+.button {
+  height: 40px;
 }

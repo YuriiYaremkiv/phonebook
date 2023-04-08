@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
 import { SelectCountry } from 'components/SelectCountry/SelectCountry';
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { ChangeMode } from 'components/ChangeMode/ChangeMode';
@@ -13,7 +12,6 @@ export const Header = () => {
   const isLoggedIn = useSelector(authSelectors.getisLoggedIn);
   const { themeMode } = useSelector(state => state.themeMode);
   const styles = modeConfig.style[themeMode];
-  const { t } = useTranslation();
 
   return (
     <header style={{ ...styles.backgroundColorHeader }}>

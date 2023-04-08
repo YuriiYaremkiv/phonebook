@@ -16,7 +16,7 @@ export const Filter = () => {
   };
 
   return (
-    <label className={css.filter__label}>
+    <label className={css.label}>
       {t('findContactsForName')}
       <TextField
         id="outlined-basic"

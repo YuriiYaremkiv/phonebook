@@ -68,5 +68,9 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yyaremkiv/phonebook/issues"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "typescript": "^4.9.5"
   }
 }
