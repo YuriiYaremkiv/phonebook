@@ -2,14 +2,106 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { FormHelperText } from '@mui/material';
+import { getContacts } from 'redux/contacts/selectors';
 import * as Yup from 'yup';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormContact.module.scss';
-import { getContacts } from 'redux/contacts/selectors';
-import { addContact } from 'redux/contacts/operationsAPI';
+import ContactsOperations from '../../redux/contacts/contact-operations';
+import InputMask from 'react-text-mask';
+
+import React from 'react';
+
+const phoneMask = [
+  /\+/,
+  '3',
+  '8',
+  ' ',
+  '(',
+  /\d/,
+  /\d/,
+  ')',
+  ' ',
+  /\d/,
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+  '-',
+  /\d/,
+  /\d/,
+];
+
+const NumberMask = props => {
+  const { inputRef, ...other } = props;
+
+  return (
+    <InputMask
+      {...other}
+      mask={phoneMask}
+      placeholderChar={'\u2000'}
+      showMask
+      guide={false}
+      keepCharPositions={false}
+      maskChar={null}
+      onBeforeMaskedValueChange={(newState, oldState, userInput) => {
+        // Remove all non-numeric characters from the user input
+        const inputValue = userInput.replace(/[^\d]/g, '');
+
+        // If the input value is empty, allow the mask to be empty
+        if (!inputValue) {
+          return {
+            value: '',
+            selection: {
+              start: 0,
+              end: 0,
+            },
+          };
+        }
+
+        // If the input value is too long, truncate it
+        if (inputValue.length > 10) {
+          return {
+            value: inputValue.substring(0, 10),
+            selection: {
+              start: oldState.selection.start,
+              end: oldState.selection.end,
+            },
+          };
+        }
+
+        // Format the input value according to the mask
+        let formattedValue = '';
+        let valueIndex = 0;
+        for (let i = 0; i < phoneMask.length; i++) {
+          const maskChar = phoneMask[i];
+          if (typeof maskChar === 'string') {
+            formattedValue += maskChar;
+          } else {
+            if (valueIndex < inputValue.length) {
+              formattedValue += inputValue[valueIndex];
+              valueIndex++;
+            } else {
+              break;
+            }
+          }
+        }
+
+        return {
+          value: formattedValue,
+          selection: {
+            start: formattedValue.length,
+            end: formattedValue.length,
+          },
+        };
+      }}
+      inputRef={inputRef}
+    />
+  );
+};
 
 export const FormContact = ({ error = '' }) => {
   const { themeMode } = useSelector(state => state.themeMode);
@@ -51,7 +143,7 @@ export const FormContact = ({ error = '' }) => {
       return;
     }
 
-    dispatch(addContact(contact));
+    dispatch(ContactsOperations.addContact(contact));
   };
 
   return (
@@ -60,7 +152,6 @@ export const FormContact = ({ error = '' }) => {
       style={{ ...styles.backgroundColorInput }}
       className={css.form}
     >
-      {/* Name - start */}
       <FormControl variant="outlined">
         <TextField
           label={t('name')}
@@ -90,9 +181,7 @@ export const FormContact = ({ error = '' }) => {
           {formik.errors.name}
         </FormHelperText>
       </FormControl>
-      {/* Name - end */}
 
-      {/* Number - start */}
       <FormControl variant="outlined">
         <TextField
           label={t('number')}
@@ -106,6 +195,9 @@ export const FormContact = ({ error = '' }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.number}
+          InputProps={{
+            inputComponent: NumberMask,
+          }}
         />
         <FormHelperText
           error={Boolean(formik.touched.number && formik.errors.number)}
@@ -124,7 +216,6 @@ export const FormContact = ({ error = '' }) => {
           {formik.errors.number}
         </FormHelperText>
       </FormControl>
-      {/* Number - end */}
 
       <Button type="submit" variant="contained" className={css.button}>
         {t('addContact')}

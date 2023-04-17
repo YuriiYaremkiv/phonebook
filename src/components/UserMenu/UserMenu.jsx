@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { authOperations } from 'redux/auth';
+import AuthOperations from '../../redux/auth/auth-operations.js';
 import authSelectors from 'redux/auth/auth-selectors';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -15,7 +15,7 @@ export const UserMenu = () => {
   const { t } = useTranslation();
 
   const handleLogout = () => {
-    dispatch(authOperations.logOut());
+    dispatch(AuthOperations.logOut());
   };
 
   return (

@@ -3,16 +3,17 @@ import { Outlet } from 'react-router-dom';
 import { Header } from 'components/Header/Header';
 import { Footer } from 'components/Footer/Footer';
 import modeConfig from 'configs/mode.config';
-import css from './LayoutPage.module.scss';
 
-export const LayoutPage = () => {
+export const Layout = () => {
   const { themeMode } = useSelector(state => state.themeMode);
   const styles = modeConfig.style[themeMode];
 
   return (
-    <div className={css.container}>
+    <div
+      style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}
+    >
       <Header />
-      <main style={{ ...styles.backgroundColorMain }} className={css.main}>
+      <main style={{ ...styles.backgroundColorMain, flex: 1 }}>
         <Outlet />
       </main>
       <Footer />

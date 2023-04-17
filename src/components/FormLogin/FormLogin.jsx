@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { FormHelperText } from '@mui/material';
 import { LogoUser } from 'components/LogoUser/LogoUser';
+import AuthOperations from '../../redux/auth/auth-operations';
+import authSelectors from '../../redux/auth/auth-selectors';
 import * as Yup from 'yup';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -18,9 +20,11 @@ import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormLogin.module.scss';
 
-export const FormLogin = ({ handleLoginUser, error = '' }) => {
+export const FormLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
   const { themeMode } = useSelector(state => state.themeMode);
+  const error = useSelector(authSelectors.getErrorLogin);
   const styles = modeConfig.style[themeMode];
   const { t } = useTranslation();
 
@@ -39,7 +43,9 @@ export const FormLogin = ({ handleLoginUser, error = '' }) => {
         .required(t('required')),
     }),
     onSubmit: values => {
-      handleLoginUser({ email: values.email, password: values.password });
+      dispatch(
+        AuthOperations.login({ email: values.email, password: values.password })
+      );
     },
   });
 
@@ -56,7 +62,6 @@ export const FormLogin = ({ handleLoginUser, error = '' }) => {
       className={css.form}
     >
       <LogoUser />
-      {/* Email - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <TextField
           label={t('email')}
@@ -88,9 +93,7 @@ export const FormLogin = ({ handleLoginUser, error = '' }) => {
           {formik.errors.email}
         </FormHelperText>
       </FormControl>
-      {/* Email - end */}
 
-      {/* Password - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <InputLabel
           htmlFor="outlined-adornment-password"
@@ -139,15 +142,21 @@ export const FormLogin = ({ handleLoginUser, error = '' }) => {
           {formik.errors.password}
         </FormHelperText>
       </FormControl>
-      {/* Password - end */}
 
       <Button type="submit" variant="contained">
         {t('signUp')}
       </Button>
-      <Link to="/" className={css.form__link}>
+      <Link to="/register" className={css.form__link}>
         {t('signUpNotification')}
       </Link>
       {error ? <p className={css.error}>{error}</p> : null}
+      <p style={{ fontSize: '0.85rem' }}>User to test:</p>
+      <p style={{ fontSize: '0.85rem' }}>
+        email: <span style={{ fontWeight: 'bold' }}>user1111@mail.com</span>
+      </p>
+      <p style={{ fontSize: '0.85rem' }}>
+        password: <span style={{ fontWeight: 'bold' }}>user1111</span>
+      </p>
     </form>
   );
 };

@@ -5,12 +5,13 @@ import { Filter } from 'components/Filter/Filter';
 import { ListContact } from 'components/ListContact/ListContact';
 import { PatchContact } from 'components/PatchContact/PatchContact';
 import { getContacts, getFilter, getIsLoading } from 'redux/contacts/selectors';
-import { fetchContacts } from 'redux/contacts/operationsAPI';
-import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
+// import { fetchContacts } from 'redux/contacts/operationsAPI';
+// import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
 import { FormContact } from 'components/FormContact/FormContact';
 import { useTranslation } from 'react-i18next';
+import ContactsOperations from '../redux/contacts/contact-operations';
 
-export const ContactsPage = () => {
+export const PageContact = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const inProgress = useSelector(getIsLoading);
@@ -20,11 +21,11 @@ export const ContactsPage = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(ContactsOperations.fetchContacts());
   }, [dispatch]);
 
   const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
+    dispatch(ContactsOperations.deleteContact(id));
   };
 
   const handleEditContact = id => {
@@ -41,7 +42,7 @@ export const ContactsPage = () => {
   };
 
   const onUpdateContact = updatedContact => {
-    dispatch(updateContact(updatedContact));
+    dispatch(ContactsOperations.updateContact(updatedContact));
     if (!inProgress) {
       setBlockLayout(false);
     }

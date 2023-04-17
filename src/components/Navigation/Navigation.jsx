@@ -16,8 +16,8 @@ export const Navigation = () => {
   const { t } = useTranslation();
 
   const list = [
-    { category: `${t('registration')}`, link: '/' },
-    { category: `${t('login')}`, link: '/login' },
+    { category: `${t('login')}`, link: '/' },
+    { category: `${t('registration')}`, link: '/register' },
   ];
 
   return (

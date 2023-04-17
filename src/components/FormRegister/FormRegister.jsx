@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FormHelperText } from '@mui/material';
 import { LogoUser } from 'components/LogoUser/LogoUser';
+import AuthOperations from '../../redux/auth/auth-operations.js';
+import authSelectors from '../../redux/auth/auth-selectors';
 import * as Yup from 'yup';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -18,9 +20,11 @@ import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormRegister.module.scss';
 
-export const FormRegister = ({ handleUserRegister, error = '' }) => {
+export const FormRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getErrorRegister);
   const { themeMode } = useSelector(state => state.themeMode);
   const styles = modeConfig.style[themeMode];
   const { t } = useTranslation();
@@ -41,21 +45,23 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
         .email(t('formikInvalidEmail'))
         .required(t('required')),
       password: Yup.string()
-        .min(6, t('formikMin6'))
+        .min(7, t('formikMin7'))
         .max(20, t('formikMax20'))
         .required(t('required')),
       confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], t('formikPasswordConfirm'))
-        .min(6, t('formikMin6'))
+        .min(7, t('formikMin7'))
         .max(20, t('formikMax20'))
         .required(t('required')),
     }),
     onSubmit: values => {
-      handleUserRegister({
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      });
+      dispatch(
+        AuthOperations.register({
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        })
+      );
     },
   });
 
@@ -74,7 +80,6 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
       className={css.form}
     >
       <LogoUser />
-      {/* Name - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <TextField
           label={t('name')}
@@ -105,9 +110,7 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
           {formik.errors.name}
         </FormHelperText>
       </FormControl>
-      {/* Name - end */}
 
-      {/* Email - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <TextField
           label={t('email')}
@@ -139,9 +142,7 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
           {formik.errors.email}
         </FormHelperText>
       </FormControl>
-      {/* Email - end */}
 
-      {/* Password - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <InputLabel
           htmlFor="outlined-adornment-password"
@@ -190,9 +191,7 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
           {formik.errors.password}
         </FormHelperText>
       </FormControl>
-      {/* Password - end */}
 
-      {/* Confirm password - start */}
       <FormControl sx={{ width: '100%' }} variant="outlined">
         <InputLabel
           htmlFor="outlined-adornment-password"
@@ -247,12 +246,11 @@ export const FormRegister = ({ handleUserRegister, error = '' }) => {
           {formik.errors.confirmPassword}
         </FormHelperText>
       </FormControl>
-      {/* Confirm password - end */}
 
       <Button type="submit" variant="contained">
         {t('signUp')}
       </Button>
-      <Link to="/login" className={css.form__link}>
+      <Link to="/" className={css.form__link}>
         {t('signInNotification')}
       </Link>
       {error ? <p className={css.error}>{error}</p> : null}
