@@ -8,7 +8,9 @@
 
 .list__item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 
   padding: 6px;
 
@@ -17,11 +19,28 @@
 
 .list__container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
 }
 
 .list__containerButton {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
+}
+
+@media screen and (min-width: 480px) {
+  .list__container {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .list__item {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

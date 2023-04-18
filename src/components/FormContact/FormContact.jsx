@@ -10,98 +10,6 @@ import Button from '@mui/material/Button';
 import modeConfig from 'configs/mode.config';
 import css from './FormContact.module.scss';
 import ContactsOperations from '../../redux/contacts/contact-operations';
-import InputMask from 'react-text-mask';
-
-import React from 'react';
-
-const phoneMask = [
-  /\+/,
-  '3',
-  '8',
-  ' ',
-  '(',
-  /\d/,
-  /\d/,
-  ')',
-  ' ',
-  /\d/,
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-  '-',
-  /\d/,
-  /\d/,
-];
-
-const NumberMask = props => {
-  const { inputRef, ...other } = props;
-
-  return (
-    <InputMask
-      {...other}
-      mask={phoneMask}
-      placeholderChar={'\u2000'}
-      showMask
-      guide={false}
-      keepCharPositions={false}
-      maskChar={null}
-      onBeforeMaskedValueChange={(newState, oldState, userInput) => {
-        // Remove all non-numeric characters from the user input
-        const inputValue = userInput.replace(/[^\d]/g, '');
-
-        // If the input value is empty, allow the mask to be empty
-        if (!inputValue) {
-          return {
-            value: '',
-            selection: {
-              start: 0,
-              end: 0,
-            },
-          };
-        }
-
-        // If the input value is too long, truncate it
-        if (inputValue.length > 10) {
-          return {
-            value: inputValue.substring(0, 10),
-            selection: {
-              start: oldState.selection.start,
-              end: oldState.selection.end,
-            },
-          };
-        }
-
-        // Format the input value according to the mask
-        let formattedValue = '';
-        let valueIndex = 0;
-        for (let i = 0; i < phoneMask.length; i++) {
-          const maskChar = phoneMask[i];
-          if (typeof maskChar === 'string') {
-            formattedValue += maskChar;
-          } else {
-            if (valueIndex < inputValue.length) {
-              formattedValue += inputValue[valueIndex];
-              valueIndex++;
-            } else {
-              break;
-            }
-          }
-        }
-
-        return {
-          value: formattedValue,
-          selection: {
-            start: formattedValue.length,
-            end: formattedValue.length,
-          },
-        };
-      }}
-      inputRef={inputRef}
-    />
-  );
-};
 
 export const FormContact = ({ error = '' }) => {
   const { themeMode } = useSelector(state => state.themeMode);
@@ -195,9 +103,6 @@ export const FormContact = ({ error = '' }) => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.number}
-          InputProps={{
-            inputComponent: NumberMask,
-          }}
         />
         <FormHelperText
           error={Boolean(formik.touched.number && formik.errors.number)}

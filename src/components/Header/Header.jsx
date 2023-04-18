@@ -9,7 +9,7 @@ import modeConfig from 'configs/mode.config';
 import css from './Header.module.scss';
 
 export const Header = () => {
-  const isLoggedIn = useSelector(authSelectors.getisLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getisLogged);
   const { themeMode } = useSelector(state => state.themeMode);
   const styles = modeConfig.style[themeMode];
 

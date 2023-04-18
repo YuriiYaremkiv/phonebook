@@ -11,7 +11,6 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth';
-
 import { phoneBookSliceReducer } from './contacts/contacts-slice';
 import { filterContactsReducer } from './contacts/filterContactsReducer';
 import { themeModeSlice } from './theme/themeModeSlice';
@@ -27,7 +26,7 @@ const middleware = [
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isLoggedIn'],
+  whitelist: ['token'],
 };
 
 const themeModePersistConfig = {

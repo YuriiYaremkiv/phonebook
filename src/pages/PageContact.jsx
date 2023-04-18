@@ -5,24 +5,24 @@ import { Filter } from 'components/Filter/Filter';
 import { ListContact } from 'components/ListContact/ListContact';
 import { PatchContact } from 'components/PatchContact/PatchContact';
 import { getContacts, getFilter, getIsLoading } from 'redux/contacts/selectors';
-// import { fetchContacts } from 'redux/contacts/operationsAPI';
-// import { deleteContact, updateContact } from 'redux/contacts/operationsAPI';
+import { authSelectors } from '../redux/auth';
 import { FormContact } from 'components/FormContact/FormContact';
 import { useTranslation } from 'react-i18next';
 import ContactsOperations from '../redux/contacts/contact-operations';
 
 export const PageContact = () => {
+  const [editedContact, setEditedContact] = useState({});
+  const [blockLayout, setBlockLayout] = useState(false);
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
   const inProgress = useSelector(getIsLoading);
+  const isLogged = useSelector(authSelectors.getisLogged);
   const filter = useSelector(getFilter);
-  const [editedContact, setEditedContact] = useState({});
-  const [blockLayout, setBlockLayout] = useState(false);
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(ContactsOperations.fetchContacts());
-  }, [dispatch]);
+    if (isLogged) dispatch(ContactsOperations.fetchContacts());
+  }, [dispatch, isLogged]);
 
   const handleDeleteContact = id => {
     dispatch(ContactsOperations.deleteContact(id));

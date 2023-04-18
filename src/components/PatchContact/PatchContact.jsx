@@ -55,7 +55,6 @@ export const PatchContact = ({
       style={{ ...styles.backgroundColorInput }}
       className={css.form}
     >
-      {/* Name - start */}
       <FormControl variant="outlined">
         <TextField
           label={t('name')}
@@ -85,9 +84,7 @@ export const PatchContact = ({
           {formik.errors.name}
         </FormHelperText>
       </FormControl>
-      {/* Name - end */}
 
-      {/* Number - start */}
       <FormControl variant="outlined">
         <TextField
           label={t('number')}
@@ -119,7 +116,6 @@ export const PatchContact = ({
           {formik.errors.number}
         </FormHelperText>
       </FormControl>
-      {/* Number - end */}
 
       <Button
         type="submit"

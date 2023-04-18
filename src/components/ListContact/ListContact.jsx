@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import PersonIcon from '@mui/icons-material/Person';
 import Button from '@mui/material/Button';
 import css from './ListContact.module.scss';
+
 export const ListContact = ({
   contacts,
   editContactFunc,

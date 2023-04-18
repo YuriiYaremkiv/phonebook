@@ -4,7 +4,7 @@ import AuthOperations from './auth-operations';
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  isLoggedIn: false,
+  isLogged: false,
   isLoading: false,
   errorRegister: null,
   errorLogin: null,
@@ -22,12 +22,12 @@ const authSlice = createSlice({
     builder.addCase(AuthOperations.register.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.isLogged = true;
       state.isLoading = false;
     });
     builder.addCase(AuthOperations.register.rejected, (state, action) => {
       state.errorRegister = action.error.message;
-      state.isLoggedIn = false;
+      state.isLogged = false;
       state.isLoading = false;
     });
     builder.addCase(AuthOperations.login.pending, state => {
@@ -36,13 +36,13 @@ const authSlice = createSlice({
     builder.addCase(AuthOperations.login.fulfilled, (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.isLogged = true;
       state.isLoading = false;
     });
     builder.addCase(AuthOperations.login.rejected, (state, action) => {
       console.log(action.error);
       state.errorLogin = action.error.message;
-      state.isLoggedIn = false;
+      state.isLogged = false;
       state.isLoading = false;
     });
     builder.addCase(AuthOperations.logOut.pending, state => {
@@ -51,7 +51,7 @@ const authSlice = createSlice({
     builder.addCase(AuthOperations.logOut.fulfilled, (state, action) => {
       state.user = { name: null, email: null };
       state.token = null;
-      state.isLoggedIn = false;
+      state.isLogged = false;
       state.isLoading = false;
     });
     builder.addCase(AuthOperations.logOut.rejected, (state, action) => {
@@ -67,7 +67,7 @@ const authSlice = createSlice({
       (state, action) => {
         state.user = action.payload;
         state.isLoading = false;
-        state.isLoggedIn = true;
+        state.isLogged = true;
         state.updateUser = false;
       }
     );
@@ -76,7 +76,7 @@ const authSlice = createSlice({
       (state, action) => {
         state.token = null;
         state.isLoading = false;
-        state.isLoggedIn = false;
+        state.isLogged = false;
         state.updateUser = false;
       }
     );

@@ -24,16 +24,11 @@ const modeConfig = {
         color: 'red',
         transition: 'color 0.2s ease-in-out',
       },
-      red: {
-        color: 'red',
-        transition: 'color 0.2s ease-in-out',
-      },
     },
   },
   themeConfig: {
     light: 'light',
     dark: 'dark',
-    red: 'red',
   },
 };
 

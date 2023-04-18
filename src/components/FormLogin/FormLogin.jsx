@@ -152,10 +152,10 @@ export const FormLogin = () => {
       {error ? <p className={css.error}>{error}</p> : null}
       <p style={{ fontSize: '0.85rem' }}>User to test:</p>
       <p style={{ fontSize: '0.85rem' }}>
-        email: <span style={{ fontWeight: 'bold' }}>user1111@mail.com</span>
+        email: <span style={{ fontWeight: 'bold' }}>user-test@mail.com</span>
       </p>
       <p style={{ fontSize: '0.85rem' }}>
-        password: <span style={{ fontWeight: 'bold' }}>user1111</span>
+        password: <span style={{ fontWeight: 'bold' }}>user-test</span>
       </p>
     </form>
   );

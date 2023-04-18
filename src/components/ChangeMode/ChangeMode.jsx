@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import modeConfig from 'configs/mode.config';
-import css from './ChangeMode.module.scss';
 
 export const ChangeMode = () => {
   const { themeMode } = useSelector(state => state.themeMode);
@@ -26,11 +25,7 @@ export const ChangeMode = () => {
   }, [modeTheme, dispatch]);
 
   return (
-    <Button
-      onClick={handleChangeTheme}
-      style={{ ...styles.textColor }}
-      className={css.button}
-    >
+    <Button onClick={handleChangeTheme} style={{ ...styles.textColor }}>
       {modeTheme === modeConfig.themeConfig.light ? (
         <DarkModeOutlinedIcon />
       ) : (
